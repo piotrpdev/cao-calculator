@@ -1,24 +1,36 @@
 {
   "expo": {
-    "name": "typescript-app",
-    "slug": "typescript-app",
+    "name": "Leaving Cert CAO Points Calculator",
+    "description": "Helps calculate how many CAO points you need to qualify for a course",
+    "slug": "cao-calculator",
     "version": "1.0.0",
     "orientation": "portrait",
+    "backgroundColor": "#164E63",
+    "primaryColor": "#0E7490",
+    "androidStatusBar": {
+      "backgroundColor": "#164E63"
+    },
+    "androidNavigationBar": {
+      "barStyle": "light-content"
+    },
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#164E63"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#164E63"
+      }
+    },
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {
-      "supportsTablet": true
-    },
     "web": {
       "favicon": "./assets/favicon.png"
     }
