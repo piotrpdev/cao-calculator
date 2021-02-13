@@ -1,4 +1,7 @@
 {
+  "name": "cao-points-app",
+  "author": "RazerMoon",
+  "License": "MIT",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -7,7 +10,8 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "lint": "eslint **/**/*.{ts,tsx}",
-    "lint:fix": "eslint **/**/*.{ts,tsx} --fix"
+    "lint:fix": "eslint **/**/*.{ts,tsx} --fix",
+    "generate-licenses": "npm-license-crawler -onlyDirectDependencies -json ./assets/licenses.json"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.1.0",
@@ -19,7 +23,7 @@
     "expo": "~40.0.0",
     "expo-app-loading": "^1.0.1",
     "expo-font": "~8.4.0",
-    "expo-web-browser": "^8.6.0",
+    "expo-web-browser": "~8.6.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
@@ -27,7 +31,8 @@
     "react-native-paper": "^4.7.1",
     "react-native-reanimated": "~1.13.0",
     "react-native-safe-area-context": "3.1.9",
-    "react-native-screens": "~2.15.0"
+    "react-native-screens": "~2.15.0",
+    "return": "^1.0.0"
   },
   "devDependencies": {
     "@types/react": "~16.9.35",
@@ -45,6 +50,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "expo-network": "^2.4.0",
     "expo-optimize": "^0.1.70",
+    "npm-license-crawler": "^0.2.1",
     "prettier": "^2.2.1",
     "react-native-web": "~0.13.12",
     "typescript": "~4.1.5"

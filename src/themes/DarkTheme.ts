@@ -1,13 +1,13 @@
 import { DarkTheme as _DarkTheme } from "@react-navigation/native";
 import { DarkTheme as _DarkThemePaper } from "react-native-paper";
+import BrandTheme from "./BrandTheme";
 
 const DarkTheme = {
-  ..._DarkTheme,
   ..._DarkThemePaper,
   colors: {
     ..._DarkTheme.colors,
     ..._DarkThemePaper.colors,
-    primary: "#25A55F",
+    ...BrandTheme.colors,
     background: "#181A20",
   },
 };

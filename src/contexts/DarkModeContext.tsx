@@ -4,9 +4,10 @@ const DarkModeContext = React.createContext<{
   dark: boolean;
   setDark: React.Dispatch<React.SetStateAction<boolean>>;
 }>({
-  dark: true,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setDark: () => {},
+  dark: false,
+  setDark: () => {
+    return null;
+  },
 });
 
 export default DarkModeContext;

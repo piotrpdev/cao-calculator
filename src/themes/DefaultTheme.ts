@@ -1,14 +1,16 @@
 import { DefaultTheme as _DefaultTheme } from "@react-navigation/native";
 import { DefaultTheme as _DefaultThemePaper } from "react-native-paper";
+import BrandTheme from "./BrandTheme";
+
+// ? https://github.com/callstack/react-native-paper/blob/main/src/styles/DefaultTheme.tsx
 
 const DefaultTheme = {
-  ..._DefaultTheme,
   ..._DefaultThemePaper,
   colors: {
     ..._DefaultTheme.colors,
     ..._DefaultThemePaper.colors,
-    primary: "rgb(37, 165, 95)",
-    background: "rgb(249, 249, 249)",
+    ...BrandTheme.colors,
+    background: "#f9f9f9",
   },
 };
 

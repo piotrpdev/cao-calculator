@@ -1,11 +1,15 @@
 import React from "react";
 import { ScrollView } from "react-native";
-import { IconButton, List } from "react-native-paper";
+import { IconButton, List, useTheme } from "react-native-paper";
 import DarkModeSwitch from "../components/DarkModeSwitch";
+import Debug from "../components/Settings/Debug";
+import { CustomTheme } from "../themes/BrandTheme";
 
 import { SettingsProps as Props } from "../utils/StackTypes";
 
 export default function Settings({ navigation }: Props): JSX.Element {
+  const { colors } = useTheme() as CustomTheme;
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -20,24 +24,23 @@ export default function Settings({ navigation }: Props): JSX.Element {
   }, [navigation]);
 
   return (
-    <ScrollView
-      style={{
-        flex: 1,
-      }}
-    >
-      <List.Section accessibilityComponentType="" accessibilityTraits="">
-        <List.Subheader accessibilityComponentType="" accessibilityTraits="">
-          Appearance
-        </List.Subheader>
+    <ScrollView>
+      <List.Section
+        style={{ marginBottom: -8, marginTop: 0 }}
+        accessibilityComponentType=""
+        accessibilityTraits=""
+      >
         <List.Item
           title="Dark mode"
           accessibilityComponentType=""
           accessibilityTraits=""
-          right={() => <DarkModeSwitch />}
-          left={() => <List.Icon icon="weather-night" />}
+          right={(props) => (
+            <DarkModeSwitch {...props} color={colors.primary} />
+          )}
+          left={(props) => <List.Icon {...props} icon="weather-night" />}
         />
-        {/* <Divider accessibilityComponentType="" accessibilityTraits="" /> */}
       </List.Section>
+      {__DEV__ && <Debug />}
     </ScrollView>
   );
 }

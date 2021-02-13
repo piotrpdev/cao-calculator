@@ -8,7 +8,7 @@
     "backgroundColor": "#181A20",
     "primaryColor": "#25A55F",
     "androidStatusBar": {
-      "backgroundColor": "#181A20"
+      "backgroundColor": "#25A55F"
     },
     "androidNavigationBar": {
       "barStyle": "light-content"
@@ -17,7 +17,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#181A20"
+      "backgroundColor": "#25A55F"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
