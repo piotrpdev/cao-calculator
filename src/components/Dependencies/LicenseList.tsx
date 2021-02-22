@@ -4,9 +4,7 @@ import { LicensesType } from "../../utils/getLicensesFromJSON";
 
 // TODO: Add dark mode support
 const LicenseList = ({ ...rest }: FlatListProps<LicensesType>): JSX.Element => {
-  return (
-    <FlatList style={{ flex: 1 }} {...rest} keyExtractor={({ key }) => key} />
-  );
+  return <FlatList {...rest} keyExtractor={({ key }) => key} />;
 };
 
 export default LicenseList;
