@@ -11,6 +11,7 @@ const DefaultTheme = {
     ..._DefaultThemePaper.colors,
     ...BrandTheme.colors,
     background: "#f9f9f9",
+    card: "#FFFFFF",
   },
 };
 

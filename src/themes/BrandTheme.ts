@@ -5,6 +5,8 @@ import { Theme } from "react-native-paper/lib/typescript/types";
 export type CustomColors = Theme["colors"] & {
   primary: string;
   lightprimary: string;
+  disabledprimary: string;
+  card: string;
 };
 
 export type CustomTheme = Theme & {
@@ -15,6 +17,7 @@ const BrandTheme = {
   colors: {
     primary: "#25a55f",
     lightprimary: "#2be07d",
+    disabledprimary: "rgba(169, 169, 169, 0.1)",
   },
 };
 

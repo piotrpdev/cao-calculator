@@ -16,11 +16,7 @@ export default function Dependencies(): JSX.Element {
     <LicenseList
       data={getLicensesFromJSON(licenses)}
       ItemSeparatorComponent={() => (
-        <Divider
-          style={{ marginHorizontal: 10 }}
-          accessibilityComponentType=""
-          accessibilityTraits=""
-        />
+        <Divider style={{ marginHorizontal: 10 }} />
       )}
       renderItem={({ item }) => (
         <LicensesListItem onPress={(url) => openBrowserAsync(url)} {...item} />

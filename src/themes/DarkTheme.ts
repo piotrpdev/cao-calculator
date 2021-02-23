@@ -9,6 +9,7 @@ const DarkTheme = {
     ..._DarkThemePaper.colors,
     ...BrandTheme.colors,
     background: "#181A20",
+    card: "#262A34",
   },
 };
 
