@@ -1,37 +1,25 @@
 /* eslint-disable react/require-default-props */
-import React from "react";
-import { View, ViewProps } from "react-native";
+import React, { useContext, useState } from "react";
+import { FlatList, View, ViewProps } from "react-native";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
-import { Text, useTheme } from "react-native-paper";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { Dialog, List, Portal, Text, useTheme } from "react-native-paper";
+import ScoresContext, {
+  Grade,
+  gradeValues,
+  Subject,
+  subjectValues,
+} from "../../contexts/ScoresContext";
 import { CustomTheme } from "../../themes/BrandTheme";
+import gradeToPoints from "../../utils/gradeToPoints";
 
 // TODO: Hard code subjects
 
-export type Grade =
-  | "H1"
-  | "H2"
-  | "H3"
-  | "H4"
-  | "H5"
-  | "H6"
-  | "H7"
-  | "H8"
-  | "O1"
-  | "O2"
-  | "O3"
-  | "O4"
-  | "O5"
-  | "O6"
-  | "O7"
-  | "O8"
-  | "D"
-  | "M"
-  | "P";
-
 type SubjectCardProps = {
+  id: string;
+  index: number;
+  totalPing: () => void;
   cardProps?: ViewProps;
-  subject: string;
-  grade: Grade;
 };
 
 const sizes = {
@@ -54,13 +42,45 @@ const sizes = {
 };
 
 const SubjectCard = ({
+  index,
   cardProps,
-  grade,
-  subject,
+  totalPing,
 }: SubjectCardProps): JSX.Element => {
-  const extraPoints = subject === "Maths" && grade.charAt(0) === "H";
+  const { scores, setScores } = useContext(ScoresContext);
+  const { subject, grade } = scores[index];
+
+  const extraPoints =
+    subject === "Mathematics" &&
+    grade.charAt(0) === "H" &&
+    parseInt(grade.charAt(1), 10) < 7;
+
+  const points = gradeToPoints(grade, subject);
   const { colors } = useTheme() as CustomTheme;
-  const points = 48;
+
+  const [showSubjectDialog, setShowSubjectDialog] = useState(false);
+  const toggleSubjectDialog = () => setShowSubjectDialog((prev) => !prev);
+
+  const [showGradeDialog, setShowGradeDialog] = useState(false);
+  const toggleGradeDialog = () => setShowGradeDialog((prev) => !prev);
+
+  const setGrade = (val: Grade) => {
+    setScores((prev) => {
+      const newScores = prev;
+      newScores[index].grade = val;
+      return newScores;
+    });
+    totalPing();
+  };
+
+  const setSubject = (val: Subject) => {
+    setScores((prev) => {
+      const newScores = prev;
+      newScores[index].subject = val;
+      return newScores;
+    });
+    totalPing();
+  };
+
   return (
     <View
       style={{
@@ -100,17 +120,82 @@ const SubjectCard = ({
               backgroundColor: colors.disabledprimary,
             }}
           >
-            <Text
-              style={{
-                fontSize: sizes.fontNormal,
-                color: colors.primary,
-              }}
+            <TouchableOpacity
+              onPress={toggleGradeDialog}
+              style={{ padding: sizes.innerDistance }}
             >
-              {grade}
-            </Text>
+              <Text
+                style={{
+                  fontSize: sizes.fontNormal,
+                  color: colors.primary,
+                }}
+              >
+                {grade}
+              </Text>
+            </TouchableOpacity>
+            <Portal>
+              <Dialog visible={showGradeDialog} onDismiss={toggleGradeDialog}>
+                <Dialog.Title>Select Grade</Dialog.Title>
+                <Dialog.Content>
+                  <FlatList
+                    data={
+                      subject === "Link Modules"
+                        ? gradeValues.filter((val) => val.length === 1)
+                        : gradeValues.filter((val) => val.length > 1)
+                    }
+                    style={{ maxHeight: 300 }}
+                    renderItem={({ item }) => (
+                      <List.Item
+                        onPress={() => {
+                          setGrade(item);
+                          toggleGradeDialog();
+                        }}
+                        title={item}
+                      />
+                    )}
+                    keyExtractor={(item) => item}
+                  />
+                </Dialog.Content>
+              </Dialog>
+            </Portal>
           </View>
           <View style={{ marginLeft: sizes.innerDistance }}>
-            <Text style={{ fontSize: sizes.fontNormal }}>{subject}</Text>
+            <TouchableOpacity onPress={toggleSubjectDialog}>
+              <Text
+                numberOfLines={1}
+                style={{
+                  fontSize: sizes.fontNormal,
+                  padding: sizes.innerDistance,
+                  width: 200,
+                }}
+              >
+                {scores[index].subject}
+              </Text>
+            </TouchableOpacity>
+            <Portal>
+              <Dialog
+                visible={showSubjectDialog}
+                onDismiss={toggleSubjectDialog}
+              >
+                <Dialog.Title>Select Subject</Dialog.Title>
+                <Dialog.Content>
+                  <FlatList
+                    data={subjectValues}
+                    style={{ maxHeight: 300 }}
+                    renderItem={({ item }) => (
+                      <List.Item
+                        onPress={() => {
+                          setSubject(item);
+                          toggleSubjectDialog();
+                        }}
+                        title={item}
+                      />
+                    )}
+                    keyExtractor={(item) => item}
+                  />
+                </Dialog.Content>
+              </Dialog>
+            </Portal>
           </View>
         </View>
       </View>
@@ -131,7 +216,7 @@ const SubjectCard = ({
         <AnimatedCircularProgress
           size={70}
           width={5}
-          fill={80}
+          fill={points * 0.8}
           rotation={0}
           lineCap="round"
           backgroundColor={colors.disabledprimary}
@@ -144,9 +229,7 @@ const SubjectCard = ({
         >
           {() => (
             <View style={{ alignItems: "center", justifyContent: "center" }}>
-              <Text style={{ fontSize: sizes.fontSmall }}>
-                {points} {}
-              </Text>
+              <Text style={{ fontSize: sizes.fontSmall }}>{points}</Text>
               {extraPoints && (
                 <Text
                   style={{ color: colors.disabled, fontSize: sizes.fontSmall }}
