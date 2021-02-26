@@ -3,7 +3,6 @@
     "name": "Leaving Cert CAO Points Calculator",
     "description": "Helps calculate how many CAO points you need to qualify for a course",
     "slug": "cao-calculator",
-    "version": "1.0.0",
     "orientation": "portrait",
     "backgroundColor": "#181A20",
     "primaryColor": "#25A55F",
@@ -22,11 +21,15 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
+    "ios": {
+      "bundleIdentifier": "com.github.caocalculator",
+    },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#181A20"
-      }
+      },
+      "package": "com.github.caocalculator",
     },
     "assetBundlePatterns": [
       "**/*"
