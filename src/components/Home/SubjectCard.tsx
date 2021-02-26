@@ -18,7 +18,6 @@ import gradeToPoints from "../../utils/gradeToPoints";
 type SubjectCardProps = {
   id: string;
   index: number;
-  totalPing: () => void;
   cardProps?: ViewProps;
 };
 
@@ -41,13 +40,9 @@ const sizes = {
   },
 };
 
-const SubjectCard = ({
-  index,
-  cardProps,
-  totalPing,
-}: SubjectCardProps): JSX.Element => {
-  const { scores, setScores } = useContext(ScoresContext);
-  const { subject, grade } = scores[index];
+const SubjectCard = ({ index, cardProps }: SubjectCardProps): JSX.Element => {
+  const { data, setScores } = useContext(ScoresContext);
+  const { subject, grade } = data.scores[index];
 
   const extraPoints =
     subject === "Mathematics" &&
@@ -65,20 +60,20 @@ const SubjectCard = ({
 
   const setGrade = (val: Grade) => {
     setScores((prev) => {
-      const newScores = prev;
+      const newScores = prev.scores;
       newScores[index].grade = val;
-      return newScores;
+      newScores[index].points = gradeToPoints(val, newScores[index].subject);
+      return { ...prev, scores: [...newScores] }; // ? If there is an error with key in Home, it might be due to this
     });
-    totalPing();
   };
 
   const setSubject = (val: Subject) => {
     setScores((prev) => {
-      const newScores = prev;
+      const newScores = prev.scores;
       newScores[index].subject = val;
-      return newScores;
+      newScores[index].points = gradeToPoints(newScores[index].grade, val);
+      return { ...prev, scores: [...newScores] };
     });
-    totalPing();
   };
 
   return (
@@ -169,7 +164,7 @@ const SubjectCard = ({
                   width: 200,
                 }}
               >
-                {scores[index].subject}
+                {data.scores[index].subject}
               </Text>
             </TouchableOpacity>
             <Portal>

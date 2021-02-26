@@ -24,25 +24,28 @@ import DefaultTheme from "./src/themes/DefaultTheme";
 import About from "./src/screens/About";
 import Dependencies from "./src/screens/Dependencies";
 import initDark from "./src/utils/darkStorage";
-import ScoresContext, { Score } from "./src/contexts/ScoresContext";
+import ScoresContext, { ScoresContextType } from "./src/contexts/ScoresContext";
 
 const Stack = createStackNavigator();
 
-const defaultScores: Score[] = [
-  { id: nanoid(5), grade: "H4", subject: "Mathematics" },
-  { id: nanoid(5), grade: "H4", subject: "English" },
-  { id: nanoid(5), grade: "O3", subject: "Irish" },
-  { id: nanoid(5), grade: "H3", subject: "Physics" },
-  { id: nanoid(5), grade: "H2", subject: "Chemistry" },
-  { id: nanoid(5), grade: "H3", subject: "Biology" },
-  { id: nanoid(5), grade: "H3", subject: "Business" },
-  { id: nanoid(5), grade: "D", subject: "Link Modules" },
-];
+const defaultScores: ScoresContextType = {
+  scores: [
+    { id: nanoid(5), grade: "H4", subject: "Mathematics", points: 91 },
+    { id: nanoid(5), grade: "H4", subject: "English", points: 66 },
+    { id: nanoid(5), grade: "O3", subject: "Irish", points: 37 },
+    { id: nanoid(5), grade: "H3", subject: "Physics", points: 77 },
+    { id: nanoid(5), grade: "H2", subject: "Chemistry", points: 88 },
+    { id: nanoid(5), grade: "H3", subject: "Biology", points: 77 },
+    { id: nanoid(5), grade: "H3", subject: "Business", points: 77 },
+    { id: nanoid(5), grade: "D", subject: "Link Modules", points: 66 },
+  ],
+  totalPoints: 476,
+};
 
 export default function App(): JSX.Element {
   const [fontsLoaded] = useFonts({ Inter_300Light, Inter_600SemiBold });
   const [dark, setDark] = useState(false);
-  const [scores, setScores] = useState(defaultScores);
+  const [data, setScores] = useState(defaultScores);
   const [theme, setTheme] = useState(DarkTheme);
 
   useEffect(() => {
@@ -60,7 +63,7 @@ export default function App(): JSX.Element {
     <AppLoading />
   ) : (
     <DarkModeContext.Provider value={{ dark, setDark }}>
-      <ScoresContext.Provider value={{ scores, setScores }}>
+      <ScoresContext.Provider value={{ data, setScores }}>
         <NavigationContainer theme={theme}>
           <PaperProvider theme={theme}>
             <Stack.Navigator initialRouteName="Home">

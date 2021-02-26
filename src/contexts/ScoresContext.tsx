@@ -78,16 +78,26 @@ export const subjectValues = [
 
 export type Subject = typeof subjectValues[number];
 
-export type Score = { id: string; grade: Grade; subject: Subject };
+export type Score = {
+  id: string;
+  grade: Grade;
+  subject: Subject;
+  points: number;
+};
+
+export type ScoresContextType = { scores: Score[]; totalPoints: number };
 
 const ScoresContext = React.createContext<{
-  scores: Score[];
-  setScores: React.Dispatch<React.SetStateAction<Score[]>>;
+  data: ScoresContextType;
+  setScores: React.Dispatch<React.SetStateAction<ScoresContextType>>;
 }>({
-  scores: [
-    { id: "awdaw", grade: "H4", subject: "Mathematics" },
-    { id: "afaw", grade: "H4", subject: "English" },
-  ],
+  data: {
+    scores: [
+      { id: "awdaw", grade: "H4", subject: "Mathematics", points: 91 },
+      { id: "afaw", grade: "H4", subject: "English", points: 66 },
+    ],
+    totalPoints: 0,
+  },
   setScores: () => {
     return null;
   },
