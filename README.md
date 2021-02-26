@@ -1,6 +1,27 @@
-# expo-typescript-starter
-Expo + Typescript starter template
+# Leaving Cert CAO Points Calculator
 
-# Additional resources:
-* [Dev post](https://dev.to/yovanylg/the-easiest-way-to-begin-with-expo-typescript-eslint-and-prettier-3dj1) that explains how to configure Expo, Typescript, ESLint and Prettier.
-* [Gist](https://gist.github.com/yovany-lg/104ed47e74d1ba64f68d79a3e5f76e91) with simplified steps of the Dev post.
+Helps calculate how many CAO points you need to qualify for a course.
+
+| Dark | Light |
+|:----:|:----|
+| ![Dark](.github/images/home_dark.png) | ![Light](.github/images/home_light.png) |
+
+## Usage
+
+### Option 1
+
+Get from Releases page
+
+### Option 2
+
+Install dependencies
+
+```
+yarn
+```
+
+Start
+
+```
+yarn start
+```

@@ -4,7 +4,7 @@ const DarkModeContext = React.createContext<{
   dark: boolean;
   setDark: React.Dispatch<React.SetStateAction<boolean>>;
 }>({
-  dark: false,
+  dark: true,
   setDark: () => {
     return null;
   },

@@ -44,7 +44,7 @@ const defaultScores: ScoresContextType = {
 
 export default function App(): JSX.Element {
   const [fontsLoaded] = useFonts({ Inter_300Light, Inter_600SemiBold });
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(true);
   const [data, setScores] = useState(defaultScores);
   const [theme, setTheme] = useState(DarkTheme);
 
