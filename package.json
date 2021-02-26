@@ -1,6 +1,7 @@
 {
-    "name": "cao-points-app",
+    "name": "cao-calculator",
     "author": "RazerMoon",
+    "repository": "https://github.com/RazerMoon/cao-calculator",
     "version": "1.0.1",
     "License": "MIT",
     "main": "node_modules/expo/AppEntry.js",
