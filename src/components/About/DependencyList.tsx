@@ -8,12 +8,8 @@ const DependencyList = ({
   navigation,
 }: Pick<Props, "navigation">): JSX.Element => {
   return (
-    <List.Section
-      style={{ marginTop: 20 }}
-      accessibilityComponentType=""
-      accessibilityTraits=""
-    >
-      <Divider accessibilityComponentType="" accessibilityTraits="" />
+    <List.Section style={{ marginTop: 20 }}>
+      <Divider />
       <List.Item
         title="Expo"
         description="Used for app packaging and distribution."
@@ -25,10 +21,8 @@ const DependencyList = ({
           />
         )}
         onPress={() => openBrowserAsync("https://expo.io/")}
-        accessibilityComponentType=""
-        accessibilityTraits=""
       />
-      <Divider accessibilityComponentType="" accessibilityTraits="" />
+      <Divider />
       <List.Item
         title="React Native"
         description="A framework for building native apps."
@@ -40,10 +34,8 @@ const DependencyList = ({
           />
         )}
         onPress={() => openBrowserAsync("https://reactnative.dev/")}
-        accessibilityComponentType=""
-        accessibilityTraits=""
       />
-      <Divider accessibilityComponentType="" accessibilityTraits="" />
+      <Divider />
       <List.Item
         title="React Native Paper"
         description="Collection of customizable components."
@@ -55,10 +47,8 @@ const DependencyList = ({
           />
         )}
         onPress={() => openBrowserAsync("https://reactnativepaper.com/")}
-        accessibilityComponentType=""
-        accessibilityTraits=""
       />
-      <Divider accessibilityComponentType="" accessibilityTraits="" />
+      <Divider />
       <List.Item
         title="Full list"
         description="A list of all the open source libraries being used."
@@ -70,10 +60,8 @@ const DependencyList = ({
           />
         )}
         onPress={() => navigation.navigate("Dependencies")}
-        accessibilityComponentType=""
-        accessibilityTraits=""
       />
-      <Divider accessibilityComponentType="" accessibilityTraits="" />
+      <Divider />
     </List.Section>
   );
 };

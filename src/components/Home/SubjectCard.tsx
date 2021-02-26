@@ -70,6 +70,19 @@ const SubjectCard = ({ index, cardProps }: SubjectCardProps): JSX.Element => {
   const setSubject = (val: Subject) => {
     setScores((prev) => {
       const newScores = prev.scores;
+
+      if (
+        val === "Link Modules" &&
+        newScores[index].subject !== "Link Modules"
+      ) {
+        setGrade("M");
+      } else if (
+        val !== "Link Modules" &&
+        newScores[index].subject === "Link Modules"
+      ) {
+        setGrade("H3");
+      }
+
       newScores[index].subject = val;
       newScores[index].points = gradeToPoints(newScores[index].grade, val);
       return { ...prev, scores: [...newScores] };

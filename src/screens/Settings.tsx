@@ -16,8 +16,6 @@ export default function Settings({ navigation }: Props): JSX.Element {
         <IconButton
           icon="information-outline"
           onPress={() => navigation.navigate("About")}
-          accessibilityComponentType=""
-          accessibilityTraits=""
         />
       ),
     });
@@ -25,15 +23,9 @@ export default function Settings({ navigation }: Props): JSX.Element {
 
   return (
     <ScrollView>
-      <List.Section
-        style={{ marginBottom: -8, marginTop: 0 }}
-        accessibilityComponentType=""
-        accessibilityTraits=""
-      >
+      <List.Section style={{ marginBottom: -8, marginTop: 0 }}>
         <List.Item
           title="Dark mode"
-          accessibilityComponentType=""
-          accessibilityTraits=""
           right={(props) => (
             <DarkModeSwitch {...props} color={colors.primary} />
           )}

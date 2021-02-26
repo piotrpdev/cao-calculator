@@ -46,8 +46,6 @@ export default function About({ navigation }: Props): JSX.Element {
 
                 elevation: 5,
               }}
-              accessibilityComponentType=""
-              accessibilityTraits=""
             />
           </TouchableOpacity>
           <Title>Hi, I&apos;m Peter!</Title>

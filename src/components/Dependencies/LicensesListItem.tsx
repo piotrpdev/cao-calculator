@@ -48,12 +48,8 @@ const LicensesListItem = ({
       description={`${version} • ${licenses} • ${username}`}
       style={{ margin: 5, ...style }}
       onPress={() => onPress(repository)}
-      accessibilityComponentType=""
-      accessibilityTraits=""
       left={(props) => (
         <Avatar.Image
-          accessibilityComponentType=""
-          accessibilityTraits=""
           {...props}
           style={{ ...styles.avatar, ...props.style, ...leftStyle }}
           source={{ uri: image }}

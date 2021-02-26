@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { View } from "react-native";
 import { Text } from "react-native-paper";
 import ScoresContext from "../../contexts/ScoresContext";
@@ -19,11 +19,12 @@ const TotalPoints = (): JSX.Element => {
       style={{
         flexDirection: "row",
         justifyContent: "space-evenly",
-        width: "90%",
+        alignItems: "center",
+        width: "80%",
       }}
     >
-      <Text style={{ marginRight: "80%" }}>Total</Text>
-      <Text>{totalPoints}</Text>
+      <Text style={{ marginRight: "80%", fontSize: 20 }}>Total</Text>
+      <Text style={{ fontSize: 24 }}>{totalPoints}</Text>
     </View>
   );
 };

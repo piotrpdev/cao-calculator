@@ -7,6 +7,7 @@ export type CustomColors = Theme["colors"] & {
   lightprimary: string;
   disabledprimary: string;
   card: string;
+  avatar: Record<"string", "string" | "number">;
 };
 
 export type CustomTheme = Theme & {
@@ -18,6 +19,17 @@ const BrandTheme = {
     primary: "#25a55f",
     lightprimary: "#2be07d",
     disabledprimary: "rgba(169, 169, 169, 0.1)",
+    avatar: {
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 1,
+      shadowRadius: 2,
+
+      elevation: 5,
+    },
   },
 };
 

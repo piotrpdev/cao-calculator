@@ -31,8 +31,6 @@ const DarkModeSwitch = (props: Props): JSX.Element => {
           return !prev;
         })
       }
-      accessibilityComponentType=""
-      accessibilityTraits=""
     />
   );
 };
