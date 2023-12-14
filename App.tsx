@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import AppLoading from "expo-app-loading";
+import React, { useCallback, useEffect, useState } from "react";
+import * as SplashScreen from 'expo-splash-screen';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Provider as PaperProvider } from "react-native-paper";
+import { Provider as PaperProvider, Text } from "react-native-paper";
 
 // eslint-disable-next-line camelcase
 import {
@@ -25,6 +25,10 @@ import About from "./src/screens/About";
 import Dependencies from "./src/screens/Dependencies";
 import initDark from "./src/utils/darkStorage";
 import ScoresContext, { ScoresContextType } from "./src/contexts/ScoresContext";
+import { View } from "react-native";
+
+// Keep the splash screen visible while we fetch resources
+SplashScreen.preventAutoHideAsync();
 
 const Stack = createStackNavigator();
 
@@ -42,7 +46,7 @@ const defaultScores: ScoresContextType = {
   totalPoints: 476,
 };
 
-export default function App(): JSX.Element {
+export default function App() {
   const [fontsLoaded] = useFonts({ Inter_300Light, Inter_600SemiBold });
   const [dark, setDark] = useState(true);
   const [data, setScores] = useState(defaultScores);
@@ -59,12 +63,27 @@ export default function App(): JSX.Element {
     setTheme(newTheme);
   }, [dark]);
 
-  return !fontsLoaded ? (
-    <AppLoading />
-  ) : (
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      // This tells the splash screen to hide immediately! If we call this after
+      // `setAppIsReady`, then we may see a blank screen while the app is
+      // loading its initial state and rendering its first pixels. So instead,
+      // we hide the splash screen once we know the root view has already
+      // performed layout.
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return <View>
+      <Text>Loading...</Text>
+    </View>
+  }
+
+  return (
     <DarkModeContext.Provider value={{ dark, setDark }}>
       <ScoresContext.Provider value={{ data, setScores }}>
-        <NavigationContainer theme={theme}>
+        <NavigationContainer theme={theme} onReady={onLayoutRootView}>
           <PaperProvider theme={theme}>
             <Stack.Navigator initialRouteName="Home">
               <Stack.Screen
