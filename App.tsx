@@ -75,9 +75,7 @@ export default function App() {
   }, [fontsLoaded]);
 
   if (!fontsLoaded) {
-    return <View>
-      <Text>Loading...</Text>
-    </View>
+    return null;
   }
 
   return (
