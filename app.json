@@ -31,6 +31,11 @@
       },
       "package": "com.github.caocalculator",
     },
+    "extra": {
+      "eas": {
+        "projectId": "133dfb50-eedf-4b1a-896b-c3dfa4240510"
+      }
+    },
     "assetBundlePatterns": [
       "**/*"
     ],
