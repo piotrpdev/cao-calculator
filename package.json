@@ -16,7 +16,7 @@
     "lint:fix": "eslint **/**/*.{ts,tsx} --fix",
     "build:android": "version-select & eas build --platform android",
     "submit:android": "eas submit --platform android",
-    "eas-build-post-install": "yarn generate-licenses",
+    "eas-build-post-install": "npm run generate-licenses",
     "generate-licenses": "npm-license-crawler -onlyDirectDependencies -json ./assets/licenses.json"
   },
   "dependencies": {
